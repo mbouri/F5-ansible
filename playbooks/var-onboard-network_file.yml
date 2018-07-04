@@ -44,8 +44,6 @@ selfip_information:
    vlan: 'Internal'
    allow_service: 'default'
    traffic_group : 'traffic-group-local-only'
-
-floatingip_information:
  - name: 'External-FloatingIP'
    address: '10.10.1.33'
    netmask: '255.255.0.0'
