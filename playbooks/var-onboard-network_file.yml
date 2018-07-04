@@ -1,0 +1,48 @@
+username: admin
+password: password
+
+banner_text: "--------Welcome to Onboarding BIGIP----------"
+
+hostname: 'ansibleManaged-bigip.local'
+
+ntp_servers:
+ - '172.27.1.1'
+ - '172.27.1.2'
+
+dns_servers:
+ - '8.8.8.8'
+ - '4.4.4.4'
+
+dns_search_domains:
+ - 'local'
+ - 'localhost'
+
+ip_version: 4
+
+bind_servers:
+ - '192.168.2.1'
+ - '192.168.2.2'
+
+vlan_information:
+ - name: 'External'
+   tag: '4094'
+   interface: '1.1'
+ - name: 'Internal'
+   tag: '4093'
+   interface: '1.2'
+
+selfip_information:
+ - name: 'External-SelfIP'
+   address: '10.10.1.31'
+   netmask: '255.255.0.0'
+   vlan: 'External'
+   allow_service: 'default'
+ - name: 'Internal-SelfIP'
+   address: '172.16.1.31'
+   netmask: '255.255.O.0'
+   vlan: 'Internal'
+   allow_service: 'default'
+
+module_provisioning:
+ - name: 'asm'
+   level: 'nominal'
