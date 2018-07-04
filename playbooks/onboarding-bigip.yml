@@ -81,7 +81,7 @@
      address: "{{ item.address }}"
      netmask: "{{ item.netmask }}"
      vlan: "{{ item.vlan }}"
-	 traffic_group : "{{ item.traffic_group }}"
+	 traffic_group: "{{ item.traffic_group }}"
      allow_service: "{{item.allow_service}}"
     with_items: "{{ selfip_information }}"
     delegate_to: localhost
