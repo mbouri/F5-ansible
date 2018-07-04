@@ -49,7 +49,7 @@ selfip_information:
    netmask: '255.255.0.0'
    vlan: 'External'
    allow_service: 'default'
-   traffic_group : 'traffic-group-1'
+   traffic_group: 'traffic-group-1'
  - name: 'Internal-FloatingIP'
    address: '172.16.1.33'
    netmask: '255.255.O.0'
