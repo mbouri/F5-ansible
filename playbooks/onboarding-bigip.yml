@@ -67,7 +67,7 @@
      validate_certs: False
      name: "{{ item.name }}"
      tag: "{{ item.tag }}"
-     tagged_interface: "{{ item.interface }}"
+     untagged_interface: "{{ item.interface }}"
     with_items: "{{ vlan_information }}"
     delegate_to: localhost
 
