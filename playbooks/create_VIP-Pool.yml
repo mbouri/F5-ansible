@@ -46,3 +46,21 @@
             name: node-2
           - host: 172.16.20.3
             name: node-3
+			
+   - name: Create a VIP
+     bigip_virtual_server:
+		 server: "{{ inventory_hostname }}"
+         user: "{{ username }}"
+         password: "{{ password }}"
+		 description: Training-VIP
+		 destination: "{{ item.destination }}"
+		 name: "{{ item.name }}"
+		 pool: "{{ item.pool }}"
+		 port: "{{ item.port }}"
+		 snat: "{{ item.snat }}"
+		 all_profiles:
+			   - http
+			   - clientssl
+		 validate_certs: no
+	 with_items: "{{ VS_information }}"
+	 delegate_to: localhost
