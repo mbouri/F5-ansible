@@ -11,6 +11,6 @@ node_information:
  - name: 'node-3'
    host: '172.16.20.3'
    
- pool_information:
+pool_information:
  - name: 'pool_http'
    lb-method: 'round-robin'   
