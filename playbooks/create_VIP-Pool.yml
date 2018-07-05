@@ -39,8 +39,8 @@
          pool: web
          port: 80
          validate_certs: no
-      delegate_to: localhost
-      with_items:
+     delegate_to: localhost
+     with_items:
           - host: 172.16.20.1
             name: node-1
           - host: 172.16.20.2
