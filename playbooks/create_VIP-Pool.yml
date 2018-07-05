@@ -1,5 +1,4 @@
 ---
-
 - name: Create a VIP, pool, pool members, and nodes
   hosts: bigip
   gather_fact: false
