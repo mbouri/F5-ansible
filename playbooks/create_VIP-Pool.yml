@@ -47,7 +47,7 @@
           - host: 172.16.20.3
             name: node-3
 			
-   - name: Create a VIP
+   - name: Create a VS
      bigip_virtual_server:
 		 server: "{{ inventory_hostname }}"
          user: "{{ username }}"
