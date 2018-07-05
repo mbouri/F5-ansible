@@ -13,4 +13,4 @@ node_information:
    
 pool_information:
  - name: 'pool_http'
-   lb-method: 'round-robin'   
+   lb_method: 'round-robin'   
