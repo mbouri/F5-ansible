@@ -18,6 +18,9 @@
     - 
       bigip_node: 
         host: "{{ item.host }}"
+        monitor_type: single
+        monitors: 
+          - http
         name: "{{ item.name }}"
         password: "{{ password }}"
         server: "{{ inventory_hostname }}"
