@@ -1,4 +1,4 @@
-[bigips]
+[bigip]
 10.128.1.245
 
 [webservers]
