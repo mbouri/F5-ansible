@@ -18,7 +18,7 @@ pool_information:
 VS_information:
  - name: 'vs_http'
    description: 'Training_LAB'
-   pool: 'pool-http'
+   pool: 'pool_http'
    destination: '10.10.1.100'
    port: '80'
    snat: 'automap'
