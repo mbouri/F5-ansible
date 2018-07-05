@@ -13,4 +13,11 @@ node_information:
    
 pool_information:
  - name: 'pool_http'
-   lb_method: 'round-robin'   
+   lb_method: 'round-robin'
+  
+VS_information:
+ - name: 'vs_http'
+   pool: 'pool-http'
+   destination: '10.10.1.100'
+   port: '80'
+   snat: 'automap'
