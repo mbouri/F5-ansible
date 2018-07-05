@@ -1,66 +1,70 @@
----
-- name: Create a VIP, pool, pool members, and nodes
-  hosts: bigip
+--- 
+- 
   gather_facts: false
-  vars_files:
+  hosts: bigip
+  name: "Create a VIP, pool, pool members, and nodes"
+  tasks: 
+    - 
+      bigip_pool: 
+        lb_method: "{{ item.lb_method }}"
+        name: "{{ item.name }}"
+        password: "{{ password }}"
+        server: "{{ inventory_hostname }}"
+        user: "{{ username }}"
+        validate_certs: false
+      delegate_to: localhost
+      name: "Create a pool"
+      with_items: "{{ pool_information }}"
+    - 
+      bigip_node: 
+        host: "{{ item.host }}"
+        name: "{{ item.name }}"
+        password: "{{ password }}"
+        server: "{{ inventory_hostname }}"
+        user: "{{ username }}"
+        validate_certs: false
+      delegate_to: localhost
+      name: "Create node"
+      with_items: "{{ node_information }}"
+    - 
+      bigip_pool_member: 
+        host: "{{ item.host }}"
+        name: "{{ item.name }}"
+        password: "{{ password }}"
+        pool: pool_http
+        port: 80
+        server: "{{ inventory_hostname }}"
+        user: "{{ username }}"
+        validate_certs: false
+      delegate_to: localhost
+      name: "Add nodes to pool"
+      with_items: 
+        - 
+          host: "172.16.20.1"
+          name: node-1
+        - 
+          host: "172.16.20.2"
+          name: node-2
+        - 
+          host: "172.16.20.3"
+          name: node-3
+    - 
+      bigip_virtual_server: 
+        all_profiles: 
+          - http
+          - clientssl
+        description: "{{ item.description }}"
+        destination: "{{ item.destination }}"
+        name: "{{ item.name }}"
+        password: "{{ password }}"
+        pool: "{{ item.pool }}"
+        port: "{{ item.port }}"
+        server: "{{ inventory_hostname }}"
+        snat: "{{ item.snat }}"
+        user: "{{ username }}"
+        validate_certs: false
+      delegate_to: localhost
+      name: "Create a VS"
+      with_items: "{{ VS_information }}"
+  vars_files: 
     - var_config-file.yml
-  
-  tasks:
-   - name: Create a pool
-     bigip_pool:
-         server: "{{ inventory_hostname }}"
-         user: "{{ username }}"
-         password: "{{ password }}"
-         name: "{{ item.name }}"
-         lb_method: "{{ item.lb_method }}"
-         validate_certs: no
-     with_items: "{{ pool_information }}"
-     delegate_to: localhost
-     
-   - name: Create node
-     bigip_node:
-         server: "{{ inventory_hostname }}"
-         user: "{{ username }}"
-         password: "{{ password }}"
-         host: "{{ item.host }}"
-         name: "{{ item.name }}"
-         validate_certs: no
-     with_items: "{{ node_information }}"
-     delegate_to: localhost
-  
-   - name: Add nodes to pool
-     bigip_pool_member:
-         server: "{{ inventory_hostname }}"
-         user: "{{ username }}"
-         password: "{{ password }}"
-         host: "{{ item.host }}"
-         name: "{{ item.name }}"
-         pool: pool_http
-         port: 80
-         validate_certs: no
-     delegate_to: localhost
-     with_items:
-          - host: 172.16.20.1
-            name: node-1
-          - host: 172.16.20.2
-            name: node-2
-          - host: 172.16.20.3
-            name: node-3
-			
-   - name: Create a VS
-     bigip_virtual_server:
-		 server: "{{ inventory_hostname }}"
-         user: "{{ username }}"
-         password: "{{ password }}"
-		 description: Training-VIP
-		 destination: "{{ item.destination }}"
-		 name: "{{ item.name }}"
-		 pool: "{{ item.pool }}"
-		 port: "{{ item.port }}"
-		 snat: "{{ item.snat }}"
-		 all_profiles:
-			   - http
-			   - clientssl
-		 validate_certs: no
-	 with_items: "{{ VS_information }}"
-	 delegate_to: localhost
