@@ -7,7 +7,7 @@
     - 
       bigip_pool: 
         lb_method: "{{ item.lb_method }}"
-        monitor_type: "single"
+        monitor_type: "and_list"
         monitors: 
           - http
         name: "{{ item.name }}"
