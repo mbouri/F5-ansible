@@ -35,7 +35,7 @@
          password: "{{ password }}"
          host: "{{ item.host }}"
          name: "{{ item.name }}"
-         pool: web
+         pool: pool_http
          port: 80
          validate_certs: no
      delegate_to: localhost
