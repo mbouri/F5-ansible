@@ -11,6 +11,9 @@
         password: "{{ password }}"
         server: "{{ inventory_hostname }}"
         user: "{{ username }}"
+		monitor_type: single
+        monitors: 
+          - http
         validate_certs: false
       delegate_to: localhost
       name: "Create a pool"
@@ -18,9 +21,6 @@
     - 
       bigip_node: 
         host: "{{ item.host }}"
-        monitor_type: single
-        monitors: 
-          - http
         name: "{{ item.name }}"
         password: "{{ password }}"
         server: "{{ inventory_hostname }}"
