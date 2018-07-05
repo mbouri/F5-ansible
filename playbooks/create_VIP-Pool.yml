@@ -12,7 +12,7 @@
          user: "{{ username }}"
          password: "{{ password }}"
          name: "{{ item.name }}"
-         lb_method: "{{ item.lb-method }}"
+         lb_method: "{{ item.lb_method }}"
          validate_certs: no
      with_items: "{{ pool_information }}"
      delegate_to: localhost
