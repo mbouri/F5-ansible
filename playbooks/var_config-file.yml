@@ -1,0 +1,16 @@
+username: admin
+password: password
+
+node_information:
+ - name: 'node-1'
+   host: '172.16.20.1'
+   
+ - name: 'node-2'
+   host: '172.16.20.2'
+
+ - name: 'node-3'
+   host: '172.16.20.3'
+   
+ pool_information:
+ - name: 'pool_http'
+   lb-method: 'round-robin'   
